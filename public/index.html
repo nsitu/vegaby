@@ -2,94 +2,13 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="styles.css">
+<script src="vegaby.js"></script>
+<link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
 <div id="map"></div>
 <div id="navigation">
   <a id="logo" href="/vegaby"><img src="/vegaby/logo.svg"></a>
 </div>
-<script>
-let map, bounds;
-
-const fetchRestaurants = (userLocation) => {
-  fetch("/vegaby/restaurants", {
-    body: JSON.stringify(userLocation),
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data)
-    for (business of data.businesses){
-      console.log( business );
-      mapRestaurant( business );
-    }
-  })
-  .catch(err => {
-    console.error(err);
-  });
-}
-
-const mapRestaurant = (restaurant) => {
-  let latLng = new google.maps.LatLng(
-    restaurant.coordinates.latitude,
-    restaurant.coordinates.longitude
-  );
-
-  bounds.extend(latLng);
-  map.fitBounds(bounds);
-
-  let infowindow = new google.maps.InfoWindow({
-    content: restaurant.name
-  });
-  let marker = new google.maps.Marker({
-    position: latLng,
-    map: map,
-    icon: "/vegaby/marker.png"
-  });
-  marker.addListener("click", () => {
-    infowindow.open(map, marker);
-  });
-
-}
-
-var initMap = () => {
-
-  if (navigator.geolocation) {
-
-    navigator.geolocation.getCurrentPosition(position => {
-
-
-      var userLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-      };
-
-      bounds = new google.maps.LatLngBounds();
-      bounds.extend(userLocation);
-
-      // The map, centered at userLocation
-      map = new google.maps.Map(
-        document.getElementById('map'),
-        {center: userLocation}
-      );
-
-      // The marker, positioned at userLocation
-      /*var marker = new google.maps.Marker({
-        position: userLocation,
-        map: map
-      });*/
-      fetchRestaurants(userLocation);
-    });
-  }
-}
-</script>
-
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJhsUf4eKtvnPfINRTmvuOY7uWVt0RQcE&callback=initMap">
-</script>
-
 </body>
 </html>

@@ -5,12 +5,17 @@ body { margin: 0px; }
 }
 #navigation{
   position: absolute;
-  top:10px;
+  top:0px;
+  width:100%;
+  background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 43%);
 }
 #logo{
   display:block;
-  width: 50%;
+  margin:auto;
+  width: 200px;
 }
 #logo img{
   width: 100%;
+  padding: 20px;
 }
