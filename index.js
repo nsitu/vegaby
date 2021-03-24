@@ -1,16 +1,25 @@
-const dotenv = require('dotenv').config() 
-const express = require ('express'); 
-const fetch = require('node-fetch'); // library for making requests 
-const cors = require('cors'); // Cross Origin Resource Sharing 
+const dotenv = require('dotenv').config()
+const express = require ('express');
+const fetch = require('node-fetch'); // library for making requests
+const cors = require('cors'); // Cross Origin Resource Sharing
 const bodyParser = require('body-parser')
 
-const app = express(); // enable express 
-app.use( cors() ); // make express attach CORS headers to responses 
-app.use( express.json() ); // add json capabilities to our express app 
+const app = express(); // enable express
+app.use( cors() ); // make express attach CORS headers to responses
+app.use( express.json() ); // add json capabilities to our express aptestingp
 
-app.use('/vegaby', express.static('public')) 
+app.use('/vegaby', express.static('public'))
 
-app.post('/vegaby/restaurants', bodyParser.json(), (req, res) => { 
+app.get('/vegaby/apikey', (req,res) => {
+  if (req.headers['referer'] == process.env.ADDRESS){
+    res.send({ "Status":"OK", "GOOGLE_KEY":process.env.GOOGLE_KEY })
+  }
+  else{
+    res.send({ "Status":"Error", "Message":"Not Authorized" })
+  }
+})
+
+app.post('/vegaby/restaurants', bodyParser.json(), (req, res) => {
   let yelp = 'https://api.yelp.com/v3/businesses/search?term=vegan'
   let lat = req.body.lat;
   let lng = req.body.lng;
@@ -22,7 +31,7 @@ app.post('/vegaby/restaurants', bodyParser.json(), (req, res) => {
   }
 
   fetch(url, options)
-    .then(response => response.json()) 
+    .then(response => response.json())
     .then(result => res.send( result ) )
     .catch(error => console.log('error', error));
 
