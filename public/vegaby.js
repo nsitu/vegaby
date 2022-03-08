@@ -123,7 +123,7 @@ fetch("apikey")
      */ 
     let parameters = new URLSearchParams({
       "key": data.GOOGLE_KEY, 
-      "callback": "initMap"
+      "callback": initMap
     })
     let url = 'https://maps.googleapis.com/maps/api/js?'+parameters;
 
