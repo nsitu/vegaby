@@ -50,6 +50,7 @@ app.post(ROOT_URL+'/restaurants', bodyParser.json(), (req, res) => {
   https://www.yelp.com/developers/documentation/v3/business_search */ 
   let parameters = new URLSearchParams({
     term: 'vegan',
+    limit: 50,
     latitude: req.body.lat,
     longitude: req.body.lng
   })
