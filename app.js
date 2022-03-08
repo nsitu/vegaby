@@ -21,13 +21,13 @@ app.use(ROOT_URL+'/', express.static('public'))
 /* The frontend may request the Google API Key via this endpoint. */
 app.get(ROOT_URL+'/apikey', (req,res) => {
   /* We will not share our API Key outside of our own domain. */
-  if (req.headers['referer'] == ADDRESS ){
+  if ( req.headers.referer.startsWith(ADDRESS) ){
     res.send({ "Status":"OK", "GOOGLE_KEY":GOOGLE_KEY })
   }
   else{
     res.send({ "Status": "Error", 
-	      "Message": "Google API Key is Not Authorized. The domain "+ req.headers['referer']+" is not recognized. Expected domain is " + ADDRESS,
-	      "Headers" : req.headers
+	      "Message": "Google API Key is Not Authorized. The domain "+ req.headers.referer+" is not recognized. Expected domain is " + ADDRESS,
+	      "Headers" : req.headers.referer
 	       })
   }
 })
