@@ -23,7 +23,7 @@ var initMap = () => {
 }
 
 const fetchRestaurants = (userLocation) => {
-  fetch("/vegaby/restaurants", {
+  fetch("restaurants", {
     body: JSON.stringify(userLocation),
     method: 'POST',
     headers: {'Content-Type': 'application/json'}
@@ -50,14 +50,14 @@ const mapRestaurant = (restaurant) => {
   let marker = new google.maps.Marker({
     position: latLng,
     map: map,
-    icon: "/vegaby/marker.png"
+    icon: "marker.png"
   });
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 }
 
-fetch("/vegaby/apikey")
+fetch("apikey")
 .then(response => response.json())
 .then(data => {
   if (data.Status == "OK"){
