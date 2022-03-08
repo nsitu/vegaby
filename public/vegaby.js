@@ -13,7 +13,7 @@ let currentWindow   /* keeps track of which infor window is currently open.*/
 
 /* The "initMap" function initializes the Google Map.  
 It runs automatically via a callback after the Google Maps script loads. */
-let initMap = () => {
+const initMap = () => {
   
   /* Here we ask the browser for the user's location. 
   This involves a consent step. See also, MDN Documentation for the Geolocation API: 
@@ -123,7 +123,7 @@ fetch("apikey")
      */ 
     let parameters = new URLSearchParams({
       "key": data.GOOGLE_KEY, 
-      "callback": initMap
+      "callback": 'initMap'
     })
     let url = 'https://maps.googleapis.com/maps/api/js?'+parameters;
 
