@@ -46,7 +46,12 @@ const mapRestaurant = (restaurant) => {
   bounds.extend(latLng);
   map.fitBounds(bounds);
   let infowindow = new google.maps.InfoWindow({
-    content: restaurant.name
+    maxWidth: 200,
+    content: 
+      `<img src="${restaurant.image_url}">
+       <h3>${restaurant.name}</h3>
+       <h4> ${restaurant.display_phone} </h4>
+       <p><a target="_blank" href="${restaurant.url}">View Listing</a></p>`
   });
   let marker = new google.maps.Marker({
     position: latLng,
