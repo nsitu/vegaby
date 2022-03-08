@@ -3,7 +3,7 @@
  It fetches and initializes Google Maps 
  It builds Info Window for restaurants. */
 
-let map, bounds;
+let map, bounds, currentWindow;
 
 // See also: https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
@@ -65,7 +65,10 @@ const mapRestaurant = (restaurant) => {
     icon: "marker.png"
   });
   marker.addListener("click", () => {
+    try{  currentWindow.close() }
+    catch(e){ /* no window is open yet */  }
     infowindow.open(map, marker);
+    currentWindow = infowindow;
   });
 }
 
