@@ -12,7 +12,8 @@ let bounds          /* defines an area on the map bit enough to fit all restaura
 let currentWindow   /* keeps track of which infor window is currently open.*/ 
 
 /* The "initMap" function initializes the Google Map.  
-It runs automatically via a callback after the Google Maps script loads. */
+It runs automatically via a callback after the Google Maps script loads. 
+*/
 function initMap(){
   
   /* Here we ask the browser for the user's location. 
@@ -122,7 +123,6 @@ fetch("apikey")
     We can generate a URL to fetch the Google Maps Javascript.
     We Include parameters for the Google API Key and callback function.
     After the script is loadeded, the callback function "initMap" will run. */  
-    console.log(initMap);
     let url = 'https://maps.googleapis.com/maps/api/js'+
                 '?key='+data.GOOGLE_KEY+
                 '&callback=initMap';
