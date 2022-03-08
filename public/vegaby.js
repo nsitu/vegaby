@@ -122,6 +122,7 @@ fetch("apikey")
     We can generate a URL to fetch the Google Maps Javascript.
     We Include parameters for the Google API Key and callback function.
     After the script is loadeded, the callback function "initMap" will run. */  
+    console.log(initMap);
     let url = 'https://maps.googleapis.com/maps/api/js'+
                 '?key='+data.GOOGLE_KEY+
                 '&callback=initMap';
