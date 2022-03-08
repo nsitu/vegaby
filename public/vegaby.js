@@ -48,7 +48,7 @@ const mapRestaurant = (restaurant) => {
   let infowindow = new google.maps.InfoWindow({
     maxWidth: 200,
     content: 
-      `<img src="${restaurant.image_url}">
+      `<img style="width: 100%" src="${restaurant.image_url}">
        <h3>${restaurant.name}</h3>
        <h4> ${restaurant.display_phone} </h4>
        <p><a target="_blank" href="${restaurant.url}">View Listing</a></p>`
