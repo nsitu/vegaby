@@ -1,5 +1,6 @@
 let map, bounds;
 
+// See also: https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
 var initMap = () => {
   if (navigator.geolocation) {
