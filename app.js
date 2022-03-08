@@ -26,9 +26,10 @@ app.get(ROOT_URL+'/apikey', (req,res) => {
   }
   else{
     res.send({ "Status": "Error", 
-	      "Message": "Google API Key is Not Authorized. The domain "+ req.headers.referer+" is not recognized. Expected domain is " + ADDRESS,
-	      "Headers" : req.headers.referer
-	       })
+	      "Message": "Google API Key is not authorized for this domain." ,
+	      "Referer" : req.headers.referer,
+	      "Expected" : ADDRESS
+     })
   }
 })
 
