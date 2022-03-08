@@ -33,21 +33,29 @@ app.get(ROOT_URL+'/apikey', (req,res) => {
   }
 })
 
-/* the frontend sends a POST request.
- This reuquest includes a BODY that contains lat/lng coordinates as JSON.
- here in the bakcend we use bodyParser middleware to parse the JSON   */
+/* When the frontend needs restaurants it will use this endpoint
+ The frontend sends lat/lng coordinates as JSON in the body of the request. 
+ The backend parses this JSON using the "bodyParser" middleware
+ see also: https://www.npmjs.com/package/body-parser  */
+
 app.post(ROOT_URL+'/restaurants', bodyParser.json(), (req, res) => {
-  let yelp = 'https://api.yelp.com/v3/businesses/search?term=vegan'
-  let lat = req.body.lat; 
-  let lng = req.body.lng;
-  let url = yelp+'&latitude='+lat+'&longitude='+lng;
-  let options = {
-	"headers": {
-	   "Authorization": "Bearer "+ YELP_KEY
-	}
-  }
+
+    /* See also, the YELP API documentation for business search:
+  https://www.yelp.com/developers/documentation/v3/business_search */ 
+  let parameters = new URLSearchParams({
+    term: 'vegan',
+    latitude: req.body.lat,
+    longitude: req.body.lng
+  })
+  let url = 'https://api.yelp.com/v3/businesses/search?' + parameters
+
   /* See also, the YELP Fusion API Authentication Guide :
   https://www.yelp.com/developers/documentation/v3/authentication */
+  let options = {
+	  "headers": {
+      "Authorization": "Bearer "+ YELP_KEY 	
+    }
+  }
   fetch(url, options)
     .then(response => response.json())
     .then(result => res.send( result ) )
