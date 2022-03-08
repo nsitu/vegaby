@@ -25,7 +25,7 @@ app.get(ROOT_URL+'/apikey', (req,res) => {
     res.send({ "Status":"OK", "GOOGLE_KEY":GOOGLE_KEY })
   }
   else{
-    res.send({ "Status":"Error", "Message":"Not Authorized" })
+    res.send({ "Status":"Error", "Message":"Google API Key is Not Authorized" })
   }
 })
 
