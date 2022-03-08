@@ -1,3 +1,9 @@
+/*  This is the  backend of the vegaby app. (NodeJS) 
+  It gets API Keys from the environment.
+  It listens for requests from the frontend.
+  It fetches Data from Yelp and forwards it to the frontend.
+*/
+
 const dotenv = require('dotenv').config()
 
 const ADDRESS = process.env.ADDRESS || ''  		/* for example, https://vegaby.herokuapp.com */
@@ -6,10 +12,10 @@ const YELP_KEY = process.env.YELP_KEY || ''		/* API key for use with YELP FUsion
 const ROOT_URL = process.env.ROOT_URL || ''  		/* Optional e.g. "/vegaby" -- use this to deploy inside a subfolder. */
 const PORT = process.env.PORT || 5000			/* Optional PORT number */
 
-const express = require ('express');		// express framework 
-const fetch = require('node-fetch'); 		// library for making requests
-const cors = require('cors');			// Cross Origin Resource Sharing
-const bodyParser = require('body-parser')	// middleware to parse JSON data that is sent from the frontend.
+const express = require ('express');      // express framework 
+const fetch = require('node-fetch');      // library for making requests (similar to axios)
+const cors = require('cors');             // Cross Origin Resource Sharing
+const bodyParser = require('body-parser') // middleware to parse JSON data that is sent from the frontend.
 
 const app = express(); // enable express
 app.use( cors() ); // make express attach CORS headers to responses

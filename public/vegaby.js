@@ -1,3 +1,8 @@
+/* This is the frontend of the vegaby app. It runs in the browser.
+ It fetches restaurants from the backend (NodeJS) 
+ It fetches and initializes Google Maps 
+ It builds Info Window for restaurants. */
+
 let map, bounds;
 
 // See also: https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
