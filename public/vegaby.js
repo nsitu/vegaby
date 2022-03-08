@@ -31,7 +31,8 @@ const fetchRestaurants = (userLocation) => {
   .then(response => response.json())
   .then(data => {
     for (business of data.businesses){
-      mapRestaurant( business );
+      console.log(business)
+      mapRestaurant( business )
     }
   })
   .catch(err => { console.error(err)  });
