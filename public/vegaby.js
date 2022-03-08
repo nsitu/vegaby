@@ -118,8 +118,9 @@ fetch("apikey")
 .then(response => response.json())
 .then(data => {
   if (data.Status == "OK"){
-    /* Generate a URL to fetch the Google Maps Javascript.
-    Include parameters for the Google API Key and callback function.
+    /* Now that we have an API Key for Google Maps, 
+    We can generate a URL to fetch the Google Maps Javascript.
+    We Include parameters for the Google API Key and callback function.
     After the script is loadeded, the callback function "initMap" will run. */  
     let url = 'https://maps.googleapis.com/maps/api/js'+
                 '?key='+data.GOOGLE_KEY+
