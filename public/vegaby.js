@@ -65,10 +65,19 @@ const mapRestaurant = (restaurant) => {
     icon: "marker.png"
   });
   marker.addListener("click", () => {
-    try{  currentWindow.close() }
-    catch(e){ /* no window is open yet */  }
+    try{  
+      /* if another window is already open, close it first*/ 
+      currentWindow.close() 
+    }
+    catch(e){  
+      /* no window is open yet  so we don't need to do anything. */ 
+    }
+    /* open the infowindow attached to this marker. */ 
     infowindow.open(map, marker);
-    currentWindow = infowindow;
+    
+    /* set the infowindow as "currentWindow"
+     this will allow us to track it and close it on subsquent clicks. */
+    currentWindow = infowindow; 
   });
 }
 
