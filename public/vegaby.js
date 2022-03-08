@@ -11,7 +11,9 @@ let map             /* google maps gets initialized here. */
 let bounds          /* defines an area on the map bit enough to fit all restaurants. */ 
 let currentWindow   /* keeps track of which infor window is currently open.*/ 
 
-var initMap = () => {
+/* The "initMap" function initializes the Google Map.  
+It runs automatically via a callback after the Google Maps script loads. */
+let initMap = () => {
   
   /* Here we ask the browser for the user's location. 
   This involves a consent step. See also, MDN Documentation for the Geolocation API: 
@@ -19,7 +21,7 @@ var initMap = () => {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
-      var userLocation = {
+      let userLocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
       };
@@ -116,7 +118,9 @@ fetch("apikey")
 .then(response => response.json())
 .then(data => {
   if (data.Status == "OK"){
-    /* Generate a URL with parameters, including the Google API Key */ 
+    /* Generate a URL with parameters, including the Google API Key.
+    After the script is loadeded, the callback function "initMap" will run.
+     */ 
     let parameters = new URLSearchParams({
       "key": data.GOOGLE_KEY, 
       "callback": "initMap"
