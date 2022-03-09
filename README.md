@@ -1,5 +1,5 @@
 # vegaby
-Find nearby vegan restaurants using Google Maps, NodeJS, Express, and the YELP Fusion API
+Find nearby vegan restaurants using Browser Geolocation, Google Maps, NodeJS, Express, and the YELP Fusion API
 
 Geolocation API - https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API  
 How to Get an API Key for GMaps -https://developers.google.com/maps/documentation/javascript/get-api-key  
